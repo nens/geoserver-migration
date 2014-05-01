@@ -14,6 +14,6 @@ Give a directory to this script and it'll search the directories for
 
 The script also prints out which files it changed and what it did in them.
 
-Usage:
+Usage::
 
     $ python migrate.py some/fancy/directory
