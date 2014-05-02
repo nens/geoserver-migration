@@ -29,6 +29,8 @@ def fix_file(filepath):
                 changed = True
         if '<entry key="host">s-' in line:
             line = line.replace('<entry key="host">s-', '<entry key="host">p-')
+            # Warning: only thing that happens: the 's' is replaced with a
+            # 'p'. So 'd03' stays 'd03'. This is something to keep in mind.
             logger.debug("Replaced staging DB host with production one")
             changed = True
         output.append(line)
