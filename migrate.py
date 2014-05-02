@@ -27,6 +27,10 @@ def fix_file(filepath):
                 line = '<entry key="passwd"></entry>'
                 logger.debug("Removed password")
                 changed = True
+        if '<entry key="host">s-' in line:
+            line = line.replace('<entry key="host">s-', '<entry key="host">p-')
+            logger.debug("Replaced staging DB host with production one")
+            changed = True
         output.append(line)
     if changed:
         logger.info("Fixed %s", filepath)
