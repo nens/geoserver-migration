@@ -15,6 +15,24 @@ def datastore_filepaths(basedir):
         yield os.path.join(dirpath, 'datastore.xml')
 
 
+def fix_file(filepath):
+    """Write out new file with fixed DB host and password."""
+    logger.debug("Looking at %s...", filepath)
+    changed = False
+    lines = open(filepath).readlines()
+    output = []
+    for line in lines:
+        if 'key="passwd"' in line:
+            if not '></entry>' in line:  # Password is already empty.
+                line = '<entry key="passwd"></entry>'
+                logger.debug("Removed password")
+                changed = True
+        output.append(line)
+    if changed:
+        logger.info("Fixed %s", filepath)
+        open(filepath, 'w').write(''.join(output))
+
+
 def main():
     """Main method, called when you run the script."""
     logging.basicConfig(level=logging.DEBUG,
@@ -25,8 +43,7 @@ def main():
     basedir = sys.argv[1]
 
     for filepath in datastore_filepaths(basedir):
-        logger.info(filepath)
-    print("hoera")
+        fix_file(filepath)
 
 
 if __name__ == '__main__':
