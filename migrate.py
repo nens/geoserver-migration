@@ -41,8 +41,9 @@ def fix_file(filepath):
 
 def main():
     """Main method, called when you run the script."""
-    logging.basicConfig(level=logging.DEBUG,
+    logging.basicConfig(level=logging.INFO,
                         format='%(levelname)s: %(message)s')
+    # If you want verbose logging, swap "logging.INFO" for "logging.DEBUG".
     if len(sys.argv) != 2:
         logger.critical("Pass the script one directory")
         sys.exit(1)
