@@ -17,3 +17,6 @@ The script also prints out which files it changed and what it did in them.
 Usage::
 
     $ python migrate.py some/fancy/directory
+
+
+You can test the script (on linux when you have a ``/tmp`` dir...) by running ``./test.sh``.
